@@ -1,9 +1,9 @@
-//the module will contain the routes for campsites and camsitesId
+//the module will contain the routes for partner and camsitesId
 
 const express = require("express");
-const campsiteRouter = express.Router(); // object name campsiteRouter to use with express routing methods
+const partnerRouter = express.Router(); // object name partnerRouter to use with express routing methods
 
-campsiteRouter
+partnerRouter
   .route("/")
 
   // routing method default
@@ -17,27 +17,27 @@ campsiteRouter
   //set up an end point for the get request
 
   .get((req, res) => {
-    res.end("Will send all the campsites to you"); //msg sent to the client
+    res.end("Will send all the partner to you"); //msg sent to the client
   })
 
   .post((req, res) => {
     //this will be json data
     res.end(
-      `Will add the campsites:${req.body.name} with description:${req.body.description}`
+      `Will add the partner:${req.body.name} with description:${req.body.description}`
     );
   })
 
   .put((req, res) => {
     res.statusCode = 403;
-    res.end("Put operation not supported on /campsites");
+    res.end("Put operation not supported on /partners");
   })
 
   .delete((req, res) => {
-    res.end("Deleting all campsites");
+    res.end("Deleting all partner");
   });
 
-campsiteRouter
-  .route("/:campsiteId")
+partnerRouter
+  .route("/:partnerId")
 
   // routing method default
   .all((req, res, next) => {
@@ -47,11 +47,11 @@ campsiteRouter
     next(); // this passes controle to the next routing method
   })
 
-  //add support for 4 more end points using a route parameter to the end of path:/campsiteId
+  //add support for 4 more end points using a route parameter to the end of path:/partnerId
 
   .get((req, res) => {
     res.end(
-      `Will send the details of the campsite: ${req.params.campsiteId} to you`
+      `Will send the details of the partner: ${req.params.partnerId} to you`
     );
   })
 
@@ -63,10 +63,10 @@ campsiteRouter
 
   .put((req, res) => {
     res.statusCode = 403;
-    res.end("Put operation not supported on /campsitesId");
+    res.end("Put operation not supported on /partnerId");
   })
 
   .delete((req, res) => {
-    res.end(`Deleing campsite: ${req.params.campsiteId}`);
+    res.end(`Deleing partner: ${req.params.partnerId}`);
   });
-module.exports = campsiteRouter;
+module.exports = partnerRouter;

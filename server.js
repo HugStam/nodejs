@@ -1,6 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const campsiteRouter = require("./routes/campsiteRouter");
+const promotionRouter = require("./routes/promotionRouter");
+const partnerRouter = require("./routes/partnerRouter");
 
 const hostname = "localhost";
 const port = 3000;
@@ -9,7 +11,9 @@ const app = express();
 app.use(morgan("div"));
 app.use(express.json()); //express is mw for parse json to Js
 
-app.use("/campsites", campsiteRouter); //rout path for the campsite router
+app.use("/campsites", campsiteRouter); //route path for the campsite router
+app.use("/promotions", promotionRouter);
+app.use("/partners", partnerRouter);
 
 app.use(express.static(__dirname + "/public"));
 
